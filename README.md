@@ -257,7 +257,7 @@ generated practice data의 가장 두드러진 특징은 **baseline student가 �
 
 이를 확인하기 위해 GSM8K test 1,319개의 problems을 token length에 따라 세 구간으로 구분하였다. 길이가 하위 33.3%와 66.7% 지점에 해당하는 49 tokens와 67 tokens를 기준으로, short problems은 49 tokens 이하, medium problems은 50–67 tokens, long problems은 68 tokens 이상으로 정의하였다.
 
-이후 각 구간에서 baseline model이 incorrect answer를 생성한 problems에 대해 SFT model이 correct answer로 전환한 비율을 계산하였다. 여기서 recovery rate는 다음과 같이 정의한다: $\text{Recovery Rate} = \frac{\text{Base incorrect \& SFT correct}}{\text{Base incorrect}}$
+이후 각 구간에서 baseline model이 incorrect answer를 생성한 problems에 대해 SFT model이 correct answer로 전환한 비율을 계산하였다. 여기서 recovery rate는 다음과 같이 정의한다: $\text{Recovery Rate} = \frac{|\text{Base incorrect} \cap \text{SFT correct}|}{|\text{Base incorrect}|}$
 
 
 |  | Short: ≤49 tokens | Medium: 50–67 tokens | Long: ≥68 tokens |
