@@ -364,7 +364,7 @@ practice-data generation의 기본 단위는 individual mathematical concept이�
 아래 그림은 동일한 teacher evaluation을 MATH-500에 적용한 결과이다. 
 
 <p align="center">
-  <img src="./img/fig10_math500_error_analysis_by_level.png" width="600">
+  <img src="./img/fig10_math500_error_analysis_by_level.png" width="1000">
 </p> 
 
 problem difficulty가 증가할수록 student model의 correct rate가 뚜렷하게 감소한다. level 1에서는 약 44%의 problems을 올바르게 해결했지만, Level 2에서는 31%, Level 3에서는 21%, Level 4에서는 10%, Level 5에서는 6%까지 감소하였다. 
@@ -380,17 +380,17 @@ problem difficulty가 증가할수록 student model의 correct rate가 뚜렷하
 maximum sequence length를 1024 tokens로 설정했을 때, original student model의 outputs을 생성한 다음, 앞서 정의한 세 가지 error criterion에 따라 teacher model이 correct와 incorrect responses로 분류하였다. 이후 correct와 incorrect group의 response length를 비교하고, 추가적으로 각 group의 token-length에서 IQR을 계산하고, 1.5 $\times$ IQR을 초과하는 responses를 outliers로 정의하여 전체 responses와 outlier responses의 mean 및 median length를 각각 비교하였다.
 
 <p align="center">
-  <img src="./img/fig2_response_length_mean_char_token.png" width="600">
+  <img src="./img/fig2_response_length_mean_char_token.png" width="1000">
 </p> 
 
 <p align="center">
-  <img src="./img/fig3_response_length_median_char_token.png" width="600">
+  <img src="./img/fig3_response_length_median_char_token.png" width="1000">
 </p> 
 
 전체 correct responses의 mean과 median은 각각 289와 280 tokens인 반면, incorrect responses에서는 각각 370과 333 tokens으로 나타났다. 즉, incorrect responses는 correct responses보다 평균적으로 약 28%, median 기준으로 약 19% 더 길었다. 이러한 차이는 outliers에서 더욱 두드러졌다. outlier subset에서 correct responses의 mean과 median token length는 각각 431과 537 tokens이었던 반면, incorrect responses에서는 각각 817과 850 tokens이었다. 또한 incorrect responses에서는 1024-token generation limit에 근접하는 긴 outputs이 상대적으로 더 많이 관찰되었다. ECDF에서도 incorrect responses이 correct responses보다 전반적으로 오른쪽으로 이동해 있어 incorrect responses가 더 긴 generation을 생성하는 경향을 확인할 수 있다.
 
 <p align="center">
-  <img src="./img/fig4_response_length_distribution.png" width="600">
+  <img src="./img/fig4_response_length_distribution.png" width="1000">
 </p> 
 
 이러한 관찰을 바탕으로, practice data가 불필요하게 긴 reasoning pattern을 강화하는 것을 피하기 위해 teacher model에 short solutions을 생성하도록 지시하였다.
