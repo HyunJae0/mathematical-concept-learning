@@ -13,8 +13,6 @@ math problem solving을 위해서는 problem을 해결하는 데 필요한 **mat
 
 또한, cost-efficient teacher model을 활용하여 training data를 생성하고, parameter-efficient fine-tuning을 통해 student model을 업데이트함으로써, 비교적 제한된 computational resources와 API cost에서도 제안한 방법이 성능 향상으로 이어질 수 있는지를 함께 확인하고자 한다.
 
----
-
 ### Related Work
 
 **LLMs-as-Instructors**는 GPT-4-preview를 instructor LLM으로 사용하여 target model의 specific errors를 분석하고, 이를 바탕으로 targeted training data를 생성한다. **Self-Error-Instruct**는 GPT-4o를 instructor model로 사용하여 target model의 bad cases에서 error keyphrases를 추출하고 이를 clustering하여 공통적인 error types를 식별한 뒤, 각 error type을 바탕으로 새로운 training examples를 생성한다. 두 방법은 모두 target model에서 관찰된 errors을 활용하여 training data generation의 signal로 사용한다. learning-from-mistakes approach인 **LEMA**에서는 GPT-4를 사용하여 model이 생성한 incorrect reasoning에서 mistake를 식별하고 그 이유를 설명한 뒤, 이를 수정한 mistake-correction data를 생성하여 model을 학습시킨다.
@@ -33,7 +31,6 @@ math problem solving을 위해서는 problem을 해결하는 데 필요한 **mat
 
 그런 다음 $\mathcal{M}_S$에게 $x_i$와 $C_i$를 입력하여 variable definition → equation/relationship formulation → calculation 순으로 $x_i$에 대한 solution $y_i$를 생성하게 한다. 
 
----
 
 ### Concept Evaluation and Practice Data Generation
 
@@ -55,7 +52,7 @@ set of incorrect problems을 $E$라고 하면, 생성되는 전체 practice prob
 
 여기서 teacher-generated concept set $\hat{C}_i$는 teacher가 original problem과 reference answer를 바탕으로 해당 problem을 해결하는 데 필요한 concepts 전체를 다시 식별한여 얻어진다. 그러므로 **$\hat{C}_i$에는 student가 부족하게 이해한 concepts뿐만 아니라 이미 올바르게 이해하고 있던 concepts도 포함될 수 있다.** 이러한 설계는 부족한 concepts에 대한 새로운 학습을 제공하는 동시에, student가 이미 올바르게 학습한 concepts에 대해서도 반복적인 practice를 제공함으로써 기존 knowledge의 유지를 함께 유도하는 것을 목적으로 한다.
 
----
+
 
 ### Student Update
 
@@ -86,7 +83,7 @@ mathematical reasoning performance는 GSM8K test set을 통해 동일한 problem
 
 이를 통해 concept-guided practice를 통한 성능 향상이 특정 문제 형식에 대한 adaptation에만 국한되는지, 또는 다양한 variations에서도 보다 robust한 mathematical reasoning으로 이어지는지를 살펴본다.
 
----
+
 
 #### SFT Dataset Statistics
 
@@ -114,7 +111,7 @@ teacher가 출력한 concepts의 수를 분석한 결과, 약 30.0%의 problems�
 
 각 concept에 대해 하나의 practice problem과 corresponding solution을 생성하였다. 그 결과 총 15,007개의 practice problem–solution pairs가 생성되었으며, 이는 incorrect problem 하나당 평균 약 2.8개의 practice problems에 해당한다.
 
----
+
 
 ### Model
 
@@ -160,7 +157,7 @@ GSM-Plus zero-shot CoT에서도 GSM8K와 유사한 generation-budget effect가 �
 
 SFT model은 generation budget을 확장하더라도 response length와 accuracy가 거의 변화하지 않은 반면, Base model은 추가적인 generation budget을 활용하면서 substantially longer responses와 higher accuracy를 보였다.
 
----
+
 
 ### 5-shot CoT
 
@@ -202,7 +199,7 @@ concept error만 단독으로 발생한 경우는 전체의 3.0%에 불과하였
 
 이러한 결과가 GSM8K에 국한된 경향인지 추가적으로 확인하기 위해, 동일한 teacher-based evaluation을 MATH-500에도 적용하였다. MATH-500에서는 difficulty가 증가할수록 이러한 multi-stage error pattern이 더욱 강화되는 현상이 확인되었다. [Teacher Evaluation of Student Responses on MATH-500](#teacher-evaluation-of-student-responses-on-math-500)
 
----
+
 
 ### Token Length Analysis 
 
@@ -252,7 +249,7 @@ practice solutions의 경우 correct 및 incorrect GSM8K reference solutions과 
 
 baseline과 SFT model의 GSM8K test response length를 비교했을 때, SFT model의 분포는 zero-shot CoT와 5-shot CoT 모두에서 baseline보다 뚜렷하게 짧은 방향으로 이동하였다. training data의 simplified and concise structure가 student model의 generation behavior에도 반영된 결과로 볼 수 있다. 
 
----
+
 
 ### Recovery Rate by Problem Length
 
@@ -272,7 +269,7 @@ generated practice data의 가장 두드러진 특징은 **baseline student가 �
 
 이 결과는 concept-guided practice를 통한 SFT가 baseline의 failure cases를 모두 커버하지 못하며, **상대적으로 짧은 problems에서 더 높은 recovery가 나타났음을 보여준다.** generated practice problems이 original failure cases보다 크게 단순화되어 있었다는 앞선 분석을 함께 고려하면, simplified setting에서 학습한 mathematical concepts이 짧은 problem context에서는 비교적 효과적으로 적용되는 반면, 더 긴 context에서는 그 효과가 제한될 가능성을 시사한다.
 
----
+
 
 ### Structural Complexity of Practice Data
 
