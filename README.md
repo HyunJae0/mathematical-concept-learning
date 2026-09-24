@@ -83,8 +83,6 @@ mathematical reasoning performance는 GSM8K test set을 통해 동일한 problem
 
 이를 통해 concept-guided practice를 통한 성능 향상이 특정 문제 형식에 대한 adaptation에만 국한되는지, 또는 다양한 variations에서도 보다 robust한 mathematical reasoning으로 이어지는지를 살펴본다.
 
-
-
 #### SFT Dataset Statistics
 
 GSM8K training split의 problems에 대해 teacher model이 세 가지 기준에 맞춰 student의 outputs을 평가한 결과는 다음과 같다. 
