@@ -248,7 +248,7 @@ practice solutions의 경우 correct 및 incorrect GSM8K reference solutions과 
 baseline과 SFT model의 GSM8K test response length를 비교했을 때, SFT model의 분포는 zero-shot CoT와 5-shot CoT 모두에서 baseline보다 뚜렷하게 짧은 방향으로 이동하였다. training data의 simplified and concise structure가 student model의 generation behavior에도 반영된 결과로 볼 수 있다. 
 
 <p align="center">
-  <img src="./img/fig8_gsm8k_test_response_length_qwen_vs_sft.png" width="600">
+  <img src="./img/fig8_gsm8k_test_response_length_qwen_vs_sft.png" width="800">
 </p> 
 
 
